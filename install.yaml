@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/raghuveer125/loki-stack.git
     targetRevision: HEAD
-    path: /charts/
+    path: charts/loki-stack
   destination:
     server: https://kubernetes.default.svc
     namespace: loki-ns
