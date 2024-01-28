@@ -1,20 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: lokie-stack
+  name: loki-argo-application
+  namespace: argocd
 spec:
-  destination:
-    name: ''
-    namespace: loki-ns
-    server: 'https://kubernetes.default.svc'
-  source:
-    path: charts/loki-stack
-    repoURL: 'https://github.com/raghuveer125/loki-stack.git'
-    targetRevision: HEAD
   project: default
+
+  source:
+    repoURL: https://github.com/raghuveer125/loki-stack.git
+    targetRevision: HEAD
+    path: /charts/
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: loki-ns
+
   syncPolicy:
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
+
     automated:
       selfHeal: true
       prune: true
