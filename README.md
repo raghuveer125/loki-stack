@@ -1,72 +1,32 @@
-# Loki-Stack Helm Chart
+# Grafana Community Kubernetes Helm Charts
 
-This `loki-stack` Helm chart is a community maintained chart.
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/grafana)](https://artifacthub.io/packages/search?repo=grafana)
 
-## Prerequisites
+The code is provided as-is with no warranties.
 
-Make sure you have Helm [installed](https://helm.sh/docs/using_helm/#installing-helm).
+## Usage
 
-## Get Repo Info
+[Helm](https://helm.sh) must be installed to use the charts.
+Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
+
+Once Helm is set up properly, add the repo as follows:
 
 ```console
 helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
 ```
 
-_See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation._
+You can then run `helm search repo grafana` to see the charts.
 
-## Deploy Loki and Promtail to your cluster
+<!-- Keep full URL links to repo files because this README syncs from main to gh-pages.  -->
+Chart documentation is available in [grafana directory](https://github.com/grafana/helm-charts/blob/main/charts/grafana/README.md).
 
-### Deploy with default config
+## Contributing
 
-```bash
-helm upgrade --install loki grafana/loki-stack
-```
+<!-- Keep full URL links to repo files because this README syncs from main to gh-pages.  -->
+We'd love to have you contribute! Please refer to our [contribution guidelines](https://github.com/grafana/helm-charts/blob/main/CONTRIBUTING.md) for details.
 
-### Deploy in a custom namespace
+## License
 
-```bash
-helm upgrade --install loki --namespace=loki-stack grafana/loki-stack
-```
-
-### Deploy with custom config
-
-```bash
-helm upgrade --install loki grafana/loki-stack --set "key1=val1,key2=val2,..."
-```
-
-## Deploy Loki and Fluent Bit to your cluster
-
-```bash
-helm upgrade --install loki grafana/loki-stack \
-    --set fluent-bit.enabled=true,promtail.enabled=false
-```
-
-## Deploy Grafana to your cluster
-
-The chart loki-stack contains a pre-configured Grafana, simply use `--set grafana.enabled=true`
-
-To get the admin password for the Grafana pod, run the following command:
-
-```bash
-kubectl get secret --namespace <YOUR-NAMESPACE> loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-```
-
-To access the Grafana UI, run the following command:
-
-```bash
-kubectl port-forward --namespace <YOUR-NAMESPACE> service/loki-grafana 3000:80
-```
-
-Navigate to <http://localhost:3000> and login with `admin` and the password output above.
-Then follow the [instructions for adding the loki datasource](https://grafana.com/docs/grafana/latest/datasources/loki/), using the URL `http://loki:3100/`.
-
-## Upgrade
-### Version >= 2.8.0
-Provide support configurable datasource urls [#1374](https://github.com/grafana/helm-charts/pull/1374)
-
-### Version >= 2.7.0
-Update promtail dependency to ^6.2.3 [#1692](https://github.com/grafana/helm-charts/pull/1692)
-
-### Version >=2.6.0
-Bumped grafana 8.1.6->8.3.4 [#1013](https://github.com/grafana/helm-charts/pull/1013)
+<!-- Keep full URL links to repo files because this README syncs from main to gh-pages.  -->
+[Apache 2.0 License](https://github.com/grafana/helm-charts/blob/main/LICENSE).

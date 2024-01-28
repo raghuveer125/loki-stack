@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: HEAD
-    path: charts
+    path: /charts/
   destination:
     server: https://kubernetes.default.svc
     namespace: loki-ns
