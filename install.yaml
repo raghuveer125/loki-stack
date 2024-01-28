@@ -1,23 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki-argo-application
-  namespace: argocd
+  name: lokie-stack
 spec:
-  project: default
-
-  source:
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: HEAD
-    path: /charts/
   destination:
-    server: https://kubernetes.default.svc
+    name: ''
     namespace: loki-ns
-
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/loki-stack
+    repoURL: 'https://github.com/raghuveer125/loki-stack.git'
+    targetRevision: HEAD
+  project: default
   syncPolicy:
     syncOptions:
-    - CreateNamespace=true
-
+      - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true
