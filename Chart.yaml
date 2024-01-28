@@ -5,9 +5,9 @@ home: https://grafana.com/loki
 icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
 kubeVersion: ^1.10.0-0
 maintainers:
-- email: lokiproject@googlegroups.com
+- email: raghuveer.choudhari@hotmail.com
   name: Loki Maintainers
 name: loki-stack
 sources:
-- https://github.com/grafana/loki
+- https://github.com/raghuveer125/loki-stack.git
 version: 2.10.1
